@@ -24,7 +24,7 @@ class Income(models.Model):
     description = models.TextField('摘要', null=True, blank=True)
 
     def __str__(self):
-        return str(self.date) + str(' ') + str(self.category)
+        return str(self.date.strftime('%Y-%m')) + str(' ') + str(self.category)
 
 
 class Payment(models.Model):

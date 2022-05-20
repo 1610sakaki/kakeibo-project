@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table mt-3">
+    <tr>
+        <th>日付</th>
+        <th>カテゴリ</th>
+        <th>金額</th>
+        <th>摘要</th>
+    </tr>
+    {% for item in object_list %}
+    <tr>
+        <td>{{ item.date }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}
