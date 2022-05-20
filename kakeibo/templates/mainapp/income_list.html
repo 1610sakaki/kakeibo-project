@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 
 {% block content %}
 <table class="table mt-3">
@@ -12,8 +12,8 @@
     {% for item in object_list %}
     <tr>
         <td>{{ item.date }}</td>
-        <td>{{ item.price }}</td>
         <td>{{ item.category }}</td>
+        <td>{{ item.price }}</td>
         <td>{{ item.description }}</td>
     </tr>
     {% endfor %}
