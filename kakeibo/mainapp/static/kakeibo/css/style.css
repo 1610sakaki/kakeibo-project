@@ -5,7 +5,7 @@ html{
 }
 body{
     line-height: 1;
-    background-color: aliceblue;
+    /*background-color: whitesmoke;*/
     color: #333;
     font-size: 1.4rem;
 }
@@ -13,11 +13,17 @@ body{
 /*---------------------------
  *table
  *---------------------------*/
+ .income{
+     background-color: aqua;
+ }
+ .payment{
+     background-color: #f696fb;
+ }
  .table{
      border-collapse: collapse;
      border-spacing: 0;
-     width: 100px;
-     font-size: 1.4rem;
+     width: 80%;
+     font-size: medium;
  }
  .table tr{
      border-bottom: dotted 0.5px #432c02;
@@ -27,6 +33,25 @@ body{
  }
  .table th, .table td{
      text-align: center;
-     width: 20%;
      padding: 15px 0;
+     /*display: block;
+     padding: 4px 0 0 4px;
+     height: 1.2em;*/
+     
+     overflow: hidden; /* あふれたら非表示 */
+     white-space: nowrap;
+     border-bottom: 1px solid gray;
  }
+ .a{
+    width: 20%;
+ }
+ .b{
+    width: 20%;
+ }
+ .c{
+    width: 20%;
+ }
+ .d{
+    width: 40%;
+ }
+ 
