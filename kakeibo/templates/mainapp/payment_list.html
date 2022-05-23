@@ -17,7 +17,7 @@
         <td>{{ item.category }}</td>
         <td>{{ item.price }}</td>
         <td>{{ item.description }}</td>
-        <td><a href="{% url 'detail-income' item.pk %}">詳細へ</a></td>
+        <td><a href="{% url 'detail-payment' item.pk %}">詳細へ</a></td>
     </tr>
     {% endfor %}
 </table>
