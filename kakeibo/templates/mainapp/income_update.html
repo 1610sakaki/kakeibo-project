@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{%block title%}収入修正{%endblock%}
+{% block content %}
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">修正する</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{%block title%}収入削除{%endblock%}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">{{ object }}を削除する</button>
+</form>
+{% endblock content %}
