@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends '../base.html' %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">収入詳細</h5>
+    <div class="card-body">
+        <p class="card-text">月：{{ object.date }}<br>
+            カテゴリー：{{ object.category }}<br>
+            金額：{{ object.price }}<br>
+            摘要：{{ object.description }}
+        </p>
+        <a href="{% url 'list-income' %}" class="btn btn-primary">一覧へ</a>
+        <a href="{% url 'update-income' object.pk %}" class="btn btn-primary">編集する</a>
+        <a href="{% url 'delete-income' object.pk %}" class="btn btn-primary">削除する</a>
+    </div>
+</div>
+{% endblock content %}

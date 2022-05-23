@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from django.urls import reverse_lazy
 
@@ -35,3 +35,13 @@ class CreatePaymentView(CreateView):
     model = Payment
     fields = ('date', 'category', 'price', 'description')
     success_url = reverse_lazy('list-payment')
+
+
+class DetailIncomeView(DetailView):
+    template_name = 'mainapp/income_detail.html'
+    model = Income
+
+
+class DetailPaymentView(DetailView):
+    template_name = 'mainapp/payment_detail.html'
+    model = Payment

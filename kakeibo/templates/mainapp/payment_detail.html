@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends '../base.html' %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">支出詳細</h5>
+    <div class="card-body">
+        <p class="card-text">月：{{ object.date }}<br>
+            カテゴリー：{{ object.category }}<br>
+            金額：{{ object.price }}<br>
+            摘要：{{ object.description }}
+        </p>
+        <a href="{% url 'list-payment' object.pk %}">一覧へ</a>
+        <a href="{% url 'update-pament' object.pk %}">編集するへ</a>
+        <a href="{% url 'delete-payment' object.pk %}">削除する</a>
+    </div>
+</div>
+{% endblock content %}

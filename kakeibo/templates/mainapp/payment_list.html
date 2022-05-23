@@ -9,6 +9,7 @@
         <th class="b">カテゴリ</th>
         <th class="c">金額</th>
         <th class="d">摘要</th>
+        <th class="e">リンク</th>
     </tr>
     {% for item in object_list %}
     <tr>
@@ -16,6 +17,7 @@
         <td>{{ item.category }}</td>
         <td>{{ item.price }}</td>
         <td>{{ item.description }}</td>
+        <td><a href="{% url 'detail-income' item.pk %}">詳細へ</a></td>
     </tr>
     {% endfor %}
 </table>
