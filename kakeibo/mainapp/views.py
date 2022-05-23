@@ -16,12 +16,6 @@ from .models import Income, Payment
 class ListIncomeView(ListView):
     template_name = 'mainapp/income_list.html'
     model = Income
-    '''
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        print(context)
-        return context
-    '''
 
 
 class ListPaymentView(ListView):
