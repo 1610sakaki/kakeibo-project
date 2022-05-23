@@ -3,8 +3,9 @@
 
 {%block title%}収入入力{%endblock%}
 {% block content %}
+<h2>収入入力</h2>
 <form method="POST">{% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="入力する">
+    <input type="submit" value="入力する" class="btn btn-primary">
 </form>
 {% endblock content %}

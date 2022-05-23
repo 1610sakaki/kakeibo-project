@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 
-{%block title%}支出登録{%endblock%}
+{%block title%}支出登録{%endblock title%}
 {% block content %}
+<h2>支出入力</h2>
 <form method="POST">{% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="入力する">
+    <input type="submit" value="入力する" class="btn btn-primary">
 </form>
 {% endblock content %}

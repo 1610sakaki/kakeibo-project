@@ -5,6 +5,6 @@
 {% block content %}
 <form method="POST">{% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">修正する</button>
+    <button type="submit" class="btn btn-primary">修正する</button>
 </form>
 {% endblock content %}
