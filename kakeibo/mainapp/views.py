@@ -1,3 +1,4 @@
+from asyncio.format_helpers import _format_callback
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import(
@@ -7,7 +8,7 @@ from django.views.generic import(
     UpdateView,
     DeleteView,
 )
-from .forms import PaymentSearchForm
+from .forms import PaymentSearchForm, PaymentCreateForm, IncomeCreateForm
 from django.urls import reverse_lazy
 
 from .models import Income, Payment
@@ -24,6 +25,7 @@ class ListPaymentView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        print(queryset)
         self.form = form = PaymentSearchForm(self.request.GET or None)
 
         if form.is_valid():
@@ -71,17 +73,31 @@ class ListPaymentView(ListView):
 
 
 class CreateIncomeView(CreateView):
-    template_name = 'mainapp/income_create.html'
+    template_name = 'mainapp/register.html'
     model = Income
-    fields = ('date', 'category', 'price', 'description')
-    success_url = reverse_lazy('list-income')
+    form_class = IncomeCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = '収入登録'
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('list-income')
 
 
 class CreatePaymentView(CreateView):
-    template_name = 'mainapp/payment_create.html'
+    template_name = 'mainapp/register.html'
     model = Payment
-    fields = ('date', 'category', 'price', 'description')
-    success_url = reverse_lazy('list-payment')
+    form_class = PaymentCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = '支出登録'
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('list-payment')
 
 
 class DetailIncomeView(DetailView):

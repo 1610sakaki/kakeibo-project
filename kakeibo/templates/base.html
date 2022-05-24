@@ -13,12 +13,13 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>{% block title %}{% endblock title %}| 家計簿アプリ</title>
-    <!--link rel="stylesheet" type="text/css" href="{% static 'kakeibo/css/style.css' %}"-->
+    <link rel="stylesheet" type="text/css" href="{% static 'kakeibo/css/style.css' %}">
 </head>
 
 <body>
     <nav class="navbar-dark navbar-dark bg-success sticky-top">
         <div class="navbar-nav d-flex flex-row">
+            <h2 class="head">家計簿アプリ </h2>
             <a class="nav-link mx-3" href="{% url 'list-income' %}">収入一覧</a>
             <a class="nav-link mx-3" href="{% url 'create-income' %}">収入登録</a>
             <a class="nav-link mx-3" href="{% url 'list-payment' %}">支出一覧</a>
