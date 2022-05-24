@@ -120,39 +120,96 @@ class CreatePaymentView(CreateView):
         return redirect(self.get_success_url())
 
 
-class DetailIncomeView(DetailView):
-    template_name = 'mainapp/income_detail.html'
-    model = Income
-
-
-class DetailPaymentView(DetailView):
-    template_name = 'mainapp/payment_detail.html'
-    model = Payment
-
-
 class UpdateIncomeView(UpdateView):
     template_name = 'mainapp/income_update.html'
     model = Income
-    fields = ('date', 'category', 'price', 'description')
-    success_url = reverse_lazy('list-income')
+    form_class = PaymentCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = '収入更新'
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('list-income')
+
+    def form_valid(self, form):
+        self.object = payment = form.save()
+        messages.info(self.request,
+                      f'収入を更新しました\n'
+                      f'日付:{payment.date}\n'
+                      f'カテゴリ:{payment.category}\n'
+                      f'金額:{payment.price}円')
+        return redirect(self.get_success_url())
 
 
 class UpdatePaymentView(UpdateView):
     template_name = 'mainapp/payment_update.html'
     model = Payment
-    fields = ('date', 'category', 'price', 'description')
-    success_url = reverse_lazy('list-payment')
+    form_class = PaymentCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = '支出更新'
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('list-payment')
+
+    def form_valid(self, form):
+        self.object = payment = form.save()
+        messages.info(self.request,
+                      f'支出を更新しました\n'
+                      f'日付:{payment.date}\n'
+                      f'カテゴリ:{payment.category}\n'
+                      f'金額:{payment.price}円')
+        return redirect(self.get_success_url())
 
 
 class DeleteIncomeView(DeleteView):
-    template_name = 'mainapp/income_delete.html'
+    template_name = 'mainapp/delete.html'
     model = Income
-    fields = ('date', 'category', 'price', 'description')
-    success_url = reverse_lazy('list-income')
+
+    def get_success_url(self):
+        return reverse_lazy('list-income')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = '収入削除確認'
+
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        self.object = income = self.get_object()
+        income.delete()
+        messages.info(self.request,
+                      f'収入を削除しました\n'
+                      f'日付:{income.date}\n'
+                      f'カテゴリ:{income.category}\n'
+                      f'金額:{income.price}円')
+        return redirect(self.get_success_url())
 
 
 class DeletePaymentView(DeleteView):
-    template_name = 'mainapp/payment_delete.html'
+    template_name = 'mainapp/delete.html'
     model = Payment
-    fields = ('date', 'category', 'price', 'description')
-    success_url = reverse_lazy('list-payment')
+
+    def get_success_url(self):
+        return reverse_lazy('list-payment')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = '支出削除確認'
+
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        self.object = payment = self.get_object()
+
+        payment.delete()
+        messages.info(self.request,
+                      f'支出を削除しました\n'
+                      f'日付:{payment.date}\n'
+                      f'カテゴリ:{payment.category}\n'
+                      f'金額:{payment.price}円')
+        return redirect(self.get_success_url())

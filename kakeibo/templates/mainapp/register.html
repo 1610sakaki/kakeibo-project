@@ -13,6 +13,16 @@
     </div>
     {% endfor %}
     <button class="btn btn-primary" type="submit" name="button">送信</button>
+    {% if '支出' in page_title %}
+    <a class="btn btn-info" href="{% url 'list-payment'%}">
+        いいえ、一覧に戻ります
+    </a>
+    {% else %}
+    <a class="btn btn-info" href="{% url 'list-income'%}">
+        いいえ、一覧に戻ります
+    </a>
+    {% endif %}
+
 </form>
 <!-- date picker -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
