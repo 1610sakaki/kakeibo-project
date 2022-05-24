@@ -3,12 +3,13 @@
 
 {%block title%}収入詳細{%endblock%}
 {% block content %}
+{% load humanize %}
 <div class="card">
     <h5 class="card-header">収入詳細</h5>
     <div class="card-body">
         <p class="card-text">月：{{ object.date }}<br>
             カテゴリー：{{ object.category }}<br>
-            金額：{{ object.price }}<br>
+            金額：{{ object.price|intcomma }}<br>
             摘要：{{ object.description }}
         </p>
         <a href="{% url 'list-income' %}" class="btn btn-primary">一覧へ</a>

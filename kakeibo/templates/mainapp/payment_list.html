@@ -2,6 +2,7 @@
 {% extends '../base.html' %}
 
 {% block content %}
+{% load humanize %}
 <h1>支出</h1>
 <table class="table mt-3" id="payment">
     <tr>
@@ -15,7 +16,7 @@
     <tr>
         <td>{{ item.date|date:"Y-m" }}</td>
         <td>{{ item.category }}</td>
-        <td>{{ item.price }}</td>
+        <td>{{ item.price|intcomma }}</td>
         <td>{{ item.description }}</td>
         <td><a href="{% url 'detail-payment' item.pk %}">詳細へ</a></td>
     </tr>

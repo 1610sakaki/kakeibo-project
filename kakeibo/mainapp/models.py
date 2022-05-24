@@ -21,6 +21,13 @@ PAYMENT_CATEGORY = (('食費', '食費'),
                     ('保険代', '保険代'),)
 
 
+class IncomeCategory(models.Model):
+    name = models.CharField('カテゴリ名', max_length=32)
+
+    def __str__(self):
+        return self.name
+
+
 class Income(models.Model):
     date = models.DateField('月')
     price = models.IntegerField('金額')
@@ -30,6 +37,13 @@ class Income(models.Model):
 
     def __str__(self):
         return str(self.date.strftime('%Y-%m')) + str(' ') + str(self.category)
+
+
+class PaymentCategory(models.Model):
+    name = models.CharField('カテゴリ名', max_length=32)
+
+    def __str__(self):
+        return self.name
 
 
 class Payment(models.Model):

@@ -3,13 +3,14 @@
 
 {%block title%}支出削除{%endblock%}
 {% block content %}
+{% load humanize %}
 <div class="card">
     <h5 class="card-header">支出詳細</h5>
     <div class="card-body">
 
         <p class="card-text">月：{{ object.date }}<br>
             カテゴリー：{{ object.category }}<br>
-            金額：{{ object.price }}<br>
+            金額：{{ object.price|intcomma }}<br>
             摘要：{{ object.description }}
         </p>
     </div>
