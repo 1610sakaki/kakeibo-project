@@ -28,10 +28,32 @@
         <div class="navbar-nav d-flex flex-row">
         </div>
     </nav>
-    <div class="p-4">
-        <h1>{%block h1 %}{% endblock %}</h1>
-        {% block content %}{% endblock content %}
+
+    <div class="layout">
+        <div class="container">
+            <main>
+                <!-- メッセージがある場合は表示する -->
+                {% if messages %}
+                <div class="alert alert-success js-alert" id="js-alert">
+                    <button class="alert-btn-close js-alert-close" type="button">×を押して閉じられるようにする</button>
+                    <!-- メッセージを取り出す -->
+                    {% for message in messages %}
+                    <p> {{ message|linebreaks }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% block content %}{% endblock %}
+            </main>
+        </div>
     </div>
+    <script type="text/javascript">
+        // ×を押して閉じられるようにする
+        for (const element of document.querySelectorAll('.js-alert > .js-alert-close')) {
+            element.addEventListener('click', e => {
+                e.target.parentElement.classList.add('is-hidden');
+            });
+        }
+    </script>
 </body>
 
 </html>

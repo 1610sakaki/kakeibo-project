@@ -1,5 +1,5 @@
 from asyncio.format_helpers import _format_callback
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import(
     ListView,
@@ -10,7 +10,7 @@ from django.views.generic import(
 )
 from .forms import PaymentSearchForm, PaymentCreateForm, IncomeCreateForm
 from django.urls import reverse_lazy
-
+from django.contrib import messages
 from .models import Income, Payment
 
 
@@ -85,6 +85,16 @@ class CreateIncomeView(CreateView):
     def get_success_url(self):
         return reverse_lazy('list-income')
 
+     # バリデーション時にメッセージを保存
+    def form_valid(self, form):
+        self.object = income = form.save()
+        messages.info(self.request,
+                      f'収入を登録しました\n'
+                      f'日付:{income.date}\n'
+                      f'カテゴリ:{income.category}\n'
+                      f'金額:{income.price}円')
+        return redirect(self.get_success_url())
+
 
 class CreatePaymentView(CreateView):
     template_name = 'mainapp/register.html'
@@ -98,6 +108,16 @@ class CreatePaymentView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('list-payment')
+
+     # バリデーション時にメッセージを保存
+    def form_valid(self, form):
+        self.object = payment = form.save()
+        messages.info(self.request,
+                      f'支出を登録しました\n'
+                      f'日付:{payment.date}\n'
+                      f'カテゴリ:{payment.category}\n'
+                      f'金額:{payment.price}円')
+        return redirect(self.get_success_url())
 
 
 class DetailIncomeView(DetailView):
